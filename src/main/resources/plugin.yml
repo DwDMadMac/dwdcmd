@@ -1,0 +1,110 @@
+name: dwdcmd
+author: dwd_madmac
+version: 1.0
+main: net.downwithdestruction.dwdcmd.DwDCmd
+description: Core Commands for DwD Gaming.
+depend: [ProtocolLib]
+
+commands:
+    fly:
+        usage: /<command> [player]
+        description: Toggles creative flymode for yourself or a player.
+    flyspeed:
+        usage: /<command>  [speed] (player)
+        description: Changes a players flyspeed.
+    helmet:
+        usage: /<command> [player]
+        description: Set a custom helmet that is in your hand.
+    mobhat:
+        usage: /<command>
+        description: Popup menu of various Mob Hats
+
+permissions:
+    dwdcmd.command.fly:
+        description: Allows you to toggle creative flymode.
+        default: op
+    dwdcmd.command.fly.others:
+        description: Allows you to toggle creative flymode for another player.
+        default: op
+    dwdcmd.command.fly.exempt:
+        description: Stop other players from toggling your flymode
+        default: op
+##########################################################################################
+    dwdcmd.command.flyspeed:
+        description: Allows you to change your flyspeed.
+        default: op
+    dwdcmd.command.flyspeed.others:
+        description: Allows you to change flyspeed for another palyer.
+        default: op
+    dwdcmd.command.flyspeed.exempt:
+        description: Stop other players from changing your flyspeed.
+        default: op
+##########################################################################################
+    dwdcmd.command.helmet:
+        description: Allows you to change your custom helmet.
+        default: op
+    dwdcmd.command.helmet.others:
+        description: Allows you to change another players custom helmet.
+        default: op
+    dwdcmd.command.helmet.exempt:
+        description: stop other players from changing your custom helmet.
+        default: op
+##########################################################################################
+    dwdcmd.command.mobhat:
+        description: Allows you to apply a mob hat.
+        default: op
+    dwdcmd.command.mobhat.all:
+        description: Grants you permission to use all mobs as a hat.
+        default: op
+    dwdcmd.command.mobhat.cow:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.chicken:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.squid:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.mooshroom:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.pig:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.sheep:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.pigman:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.ocelot:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.skeleton:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.cavespider:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.silverfish:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.slime:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.zombie:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.spider:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.irongolem:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.snowman:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+    dwdcmd.command.mobhat.bat:
+        description: Grants you permission to use this mob as a hat.
+        default: op
+##########################################################################################
