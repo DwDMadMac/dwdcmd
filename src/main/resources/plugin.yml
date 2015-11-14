@@ -1,10 +1,9 @@
-name: dwdcmd
+name: ${project.artifactId}
+main: ${project.groupId}.DwDCmd
+version: ${project.version}
 author: dwd_madmac
-version: 1.0
-main: net.downwithdestruction.dwdcmd.DwDCmd
 description: Core Commands for DwD Gaming.
 depend: [ProtocolLib]
-
 commands:
     fly:
         usage: /<command> [player]
@@ -15,7 +14,6 @@ commands:
     helmet:
         usage: /<command> [player]
         description: Set a custom helmet that is in your hand.
-
 permissions:
     dwdcmd.command.fly:
         description: Allows you to toggle creative flymode.
@@ -26,7 +24,6 @@ permissions:
     dwdcmd.command.fly.exempt:
         description: Stop other players from toggling your flymode.
         default: op
-##########################################################################################
     dwdcmd.command.flyspeed:
         description: Allows you to change your flyspeed.
         default: op
@@ -36,7 +33,6 @@ permissions:
     dwdcmd.command.flyspeed.exempt:
         description: Stop other players from changing your flyspeed.
         default: op
-##########################################################################################
     dwdcmd.command.helmet:
         description: Allows you to change your custom helmet.
         default: op
