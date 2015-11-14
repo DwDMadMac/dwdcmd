@@ -9,7 +9,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 /**
  * Created by madmac on 9/20/15.
- * <p>
+ *
  * TODO Commands: hat
  * TODO Commands: inventory see command
  * TODO Commands: kit

@@ -9,13 +9,13 @@ import org.bukkit.event.player.PlayerChangedWorldEvent;
 
 /**
  * Created by madmac on 9/30/15.
- * <p>
+ *
  * TODO: Add check for mobhat Entity Drops
  * TODO: Add check for mobhat player Entity Damage
  * TODO: Fix player not being able to teleport when Mob Hat is on
- * <p>
+ *
  * ** Special Abilities **
- * <p>
+ *
  * TODO: Ocelot, Fall damage immunity
  */
 public class PlayerListener implements Listener {

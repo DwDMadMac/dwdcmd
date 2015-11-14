@@ -10,6 +10,7 @@ import org.bukkit.entity.Player;
 
 /**
  * Created by madmac on 9/20/15.
+ *
  */
 public class Fly implements CommandExecutor {
     private DwDCmd plugin;
