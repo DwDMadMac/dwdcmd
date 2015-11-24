@@ -10,21 +10,22 @@ import org.bukkit.plugin.java.JavaPlugin;
 /**
  * Created by madmac on 9/20/15.
  *
- * TODO Commands: hat
- * TODO Commands: inventory see command
- * TODO Commands: kit
- * TODO Commands: MAYBE, list command
- * TODO Commands: nickname
- * TODO Commands: repair command with economy
- * TODO Commands: seen
- * TODO Commands: suicide
- * TODO Commands: backpack
- * TODO Commands: ride
- * TODO Commands: walkspeed
+ * TODO Command: hat
+ * TODO Command: inventory see command
+ * TODO Command: kit
+ * TODO Command: MAYBE, list command
+ * TODO Command: nickname
+ * TODO Command: repair command with economy
+ * TODO Command: seen
+ * TODO Command: suicide
+ * TODO Command: backpack
+ * TODO Command: ride
+ * TODO Command: walkspeed
+ * TODO Coomand: Book
  */
 public class DwDCmd extends JavaPlugin {
-    public static DwDCmd instance;
     private final PluginManager pm = Bukkit.getPluginManager();
+    public DwDCmd instance;
 
     public DwDCmd() {
         instance = this;
