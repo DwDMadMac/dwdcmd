@@ -63,6 +63,7 @@ public class Fly implements CommandExecutor {
             }
 
             String flyStatus = (target.getAllowFlight()) ? ChatColor.GREEN + "ON" : ChatColor.DARK_RED + "OFF";
+
             if (commandSender == target) {
                 target.sendMessage(DwD + ChatColor.GOLD + "Fly was toggled " + ChatColor.DARK_RED + flyStatus + ChatColor.GOLD + ".");
             } else {

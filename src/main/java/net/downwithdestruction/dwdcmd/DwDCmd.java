@@ -7,6 +7,11 @@ import org.bukkit.Bukkit;
 import org.bukkit.plugin.PluginManager;
 import org.bukkit.plugin.java.JavaPlugin;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
+
 /**
  * Created by madmac on 9/20/15.
  *
@@ -33,6 +38,12 @@ public class DwDCmd extends JavaPlugin {
 
     @Override
     public void onEnable() {
+        File configFile = new File(getDataFolder(), "config.yml");
+        if (!(configFile.exists())) {
+            configFile.getParentFile().mkdirs();
+            copy(getResource("config.yml"), configFile);
+        }
+
         // Global
         pm.registerEvents(new PlayerListener(this), this);
 
@@ -48,5 +59,20 @@ public class DwDCmd extends JavaPlugin {
         this.getCommand("fly").setExecutor(new Fly(this));
         this.getCommand("flyspeed").setExecutor(new Fly(this));
         this.getCommand("helmet").setExecutor(new Hat(this));
+    }
+
+    private void copy(InputStream in, File file) {
+        try {
+            OutputStream out = new FileOutputStream(file);
+            byte[] buffer = new byte[1024];
+            int len;
+            while ((len = in.read(buffer)) > 0) {
+                out.write(buffer, 0, len);
+            }
+            out.close();
+            in.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 }
