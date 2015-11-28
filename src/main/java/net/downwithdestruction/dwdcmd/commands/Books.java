@@ -101,19 +101,22 @@ public class Books implements CommandExecutor {
                 BookMeta bookMeta = (BookMeta) book.getItemMeta();
 
                 if (bookMeta.hasAuthor()) {
+                    //BooksConfig.valueOf(BooksConfig.BOOK_WRITTEN_BY.getString(bookMeta.getAuthor()));
                     plugin.getConfig().set(bookString + ".Book written by", bookMeta.getAuthor());
                 } else {
+                    //BooksConfig.valueOf(BooksConfig.BOOK_WRITTEN_BY.getString("Unknown"));
                     plugin.getConfig().set(bookString + ".Book written by", "Unknown");
                 }
 
                 if (bookMeta.hasTitle()) {
+                    //BooksConfig.valueOf(BooksConfig.TITLE.getString(bookMeta.getTitle()));
                     plugin.getConfig().set(bookString + ".Title", bookMeta.getTitle());
                 } else {
+                    //BooksConfig.valueOf(BooksConfig.TITLE.getString("None"));
                     plugin.getConfig().set(bookString + ".Title", "None");
                 }
 
                 if (bookMeta.hasPages()) {
-                    //List<String> pages = new ArrayList<String>();
                     List pages = new ArrayList();
 
                     for (String page : bookMeta.getPages()) {

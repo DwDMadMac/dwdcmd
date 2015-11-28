@@ -15,7 +15,9 @@ import java.util.Map;
  * books Config
  */
 public enum BooksConfig {
-    DEBUG_MODE(false);
+    BOOK_WRITTEN_BY(null),
+    TITLE(null),
+    CONTENT(null);
 
     private DwDCmd plugin;
     private Object def;
@@ -56,6 +58,44 @@ public enum BooksConfig {
 
     private String getKey() {
         return name().toLowerCase().replace("_", "-");
+    }
+
+    public void set(String bookName, Object value) {
+        saveConfig(bookName, value);
+    }
+
+    public String getString(String bookName) {
+        return getConfig(bookName).getString(getKey(), (String) def);
+    }
+
+    public List<String> getStringList(String bookName) {
+        return getConfig(bookName).getStringList(getKey());
+    }
+
+    public List<Map<?, ?>> getMapList(String bookName) {
+        return getConfig(bookName).getMapList(getKey());
+    }
+
+    public Map<String, ?> getMap(String bookName) {
+        ConfigurationSection configurationSection = getConfig(bookName).getConfigurationSection(getKey());
+
+        if (configurationSection == null) {
+            return null;
+        }
+
+        return configurationSection.getValues(false);
+    }
+
+    public boolean getBoolean(String bookName) {
+        return getConfig(bookName).getBoolean(getKey(), (Boolean) def);
+    }
+
+    public int getInteger(String bookName) {
+        return getConfig(bookName).getInt(getKey(), (Integer) def);
+    }
+
+    public double getDouble(String bookName) {
+        return getConfig(bookName).getDouble(getKey(), (Double) def);
     }
 
     private YamlConfiguration getConfig(String bookName) {
@@ -105,43 +145,5 @@ public enum BooksConfig {
             System.out.println(e.getMessage());
             e.printStackTrace();
         }
-    }
-
-    public void set(String bookName, Object value) {
-        saveConfig(bookName, value);
-    }
-
-    public String getString(String bookName) {
-        return getConfig(bookName).getString(getKey(), (String) def);
-    }
-
-    public List<String> getStringList(String bookName) {
-        return getConfig(bookName).getStringList(getKey());
-    }
-
-    public List<Map<?, ?>> getMapList(String bookName) {
-        return getConfig(bookName).getMapList(getKey());
-    }
-
-    public Map<String, ?> getMap(String bookName) {
-        ConfigurationSection configurationSection = getConfig(bookName).getConfigurationSection(getKey());
-
-        if (configurationSection == null) {
-            return null;
-        }
-
-        return configurationSection.getValues(false);
-    }
-
-    public boolean getBoolean(String bookName) {
-        return getConfig(bookName).getBoolean(getKey(), (Boolean) def);
-    }
-
-    public int getInteger(String bookName) {
-        return getConfig(bookName).getInt(getKey(), (Integer) def);
-    }
-
-    public double getDouble(String bookName) {
-        return getConfig(bookName).getDouble(getKey(), (Double) def);
     }
 }
