@@ -2,6 +2,7 @@ package net.downwithdestruction.dwdcmd.commands;
 
 import net.downwithdestruction.dwdcmd.DwDCmd;
 import net.downwithdestruction.dwdcmd.configuration.BooksConfig;
+import net.downwithdestruction.dwdcmd.configuration.Lang;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -29,66 +30,77 @@ public class Books implements CommandExecutor {
 
     @Override
     public boolean onCommand(CommandSender commandSender, Command command, String s, String[] strings) {
-
         if (!(commandSender instanceof Player)) {
             commandSender.sendMessage(DwD + ChatColor.GOLD + "Only players can use this command!");
             return true;
         }
-
+        // INFO: Book info command
         if (command.getName().equalsIgnoreCase("book")) {
             Player player = (Player) commandSender;
-
             if (!(player.hasPermission("dwdmcd.command.books"))) {
                 player.sendMessage(DwD + ChatColor.GOLD + "You do not have permission to use /book.");
                 return true;
             }
-
             if ((strings.length == 0)) {
                 player.sendMessage(DwD + ChatColor.GOLD + "Invalid Command!");
                 player.sendMessage(DwD + ChatColor.GOLD + "/book create <BookName> " + ChatColor.AQUA + "To create/save an book.");
                 player.sendMessage(DwD + ChatColor.GOLD + "/book give <BookName> " + ChatColor.AQUA + "To get a book");
                 return true;
             }
-
             if (strings[0].equalsIgnoreCase("create")) {
                 if (!(player.hasPermission("dwdcmd.command.books.create"))) {
                     player.sendMessage(DwD + ChatColor.GOLD + "You do not have permission to use /book create <BookName>");
                     return true;
                 }
-
                 if (strings.length == 1) {
                     player.sendMessage(DwD + ChatColor.GOLD + "Invalid Command.");
                     player.sendMessage(DwD + ChatColor.GOLD + "/book create <BookName> " + ChatColor.AQUA + "To create/save an book.");
                     return true;
                 }
-
                 createBook(player, strings[1]);
                 return true;
             }
-
+            // INFO: Give book command
             if (strings[0].equalsIgnoreCase("give")) {
                 if (!(player.hasPermission("dwdcmd.command.books.give"))) {
-                    player.sendMessage(DwD + ChatColor.GOLD + "You do not have permission to use /book give <BookName>");
+                    player.sendMessage(DwD + Lang.NO_PERMISIONS_GIVE.toString());
                     return true;
                 }
-
                 File given = new File(plugin.getDataFolder(), strings[1]);
-
                 if (!(given == null) && !(given.exists())) {
-
                     if (!(plugin.getConfig().get(strings[1]) == null)) {
                         ItemStack book = (ItemStack) plugin.getConfig().get(strings[1].toString());
-
                         if (!(book == null)) {
                             giveBook(book, player, player.getInventory().firstEmpty());
                         }
                     }
                 }
-                // TODO: Create giveBook() method
+            }
+            // INFO: Delete book command
+            if (strings[0].equalsIgnoreCase("delete")) {
+                if (!(player.hasPermission("dwdcmd.command.books.delete"))) {
+                    player.sendMessage(DwD + Lang.NO_PERMISSIONS_DELETE.toString());
+                    return true;
+                }
+                File given = new File(plugin.getDataFolder(), strings[1]);
+                if (!(given == null) && !(given.exists())) {
+                    if (!(plugin.getConfig().get(strings[1]) == null)) {
+                        ItemStack book = (ItemStack) plugin.getConfig().get(strings[1].toString());
+                        if (!(book == null)) {
+                            deleteBook(strings[1].toString());
+                        }
+                    }
+                }
             }
         }
-
         return true;
+    }
+
+    /*
+     * Remove custom book file
+     */
+    public void deleteBook(String bookString) {
+        BooksConfig.deleteFile(bookString);
     }
 
     /*
@@ -97,10 +109,8 @@ public class Books implements CommandExecutor {
     public void createBook(Player player, String bookString) {
         if (!(bookString == null)) {
             ItemStack book = player.getInventory().getItemInHand();
-
             if (!(book == null) && (book.getType() == Material.WRITTEN_BOOK)) {
                 BookMeta bookMeta = (BookMeta) book.getItemMeta();
-
                 if (bookMeta.hasAuthor()) {
                     //BooksConfig.valueOf(BooksConfig.BOOK_WRITTEN_BY.getString(bookMeta.getAuthor()));
                     //plugin.getConfig().set(bookString + ".Book written by", bookMeta.getAuthor());
@@ -112,7 +122,6 @@ public class Books implements CommandExecutor {
                     // Testing method
                     BooksConfig.BOOK_WRITTEN_BY.set(bookString, "Unknown");
                 }
-
                 if (bookMeta.hasTitle()) {
                     //BooksConfig.valueOf(BooksConfig.TITLE.getString(bookMeta.getTitle()));
                     //plugin.getConfig().set(bookString + ".Title", bookMeta.getTitle());
@@ -124,16 +133,13 @@ public class Books implements CommandExecutor {
                     // Testing method
                     BooksConfig.TITLE.set(bookString, "None");
                 }
-
                 if (bookMeta.hasPages()) {
                     List pages = new ArrayList();
-
                     for (String page : bookMeta.getPages()) {
                         //page = page.replaceAll("\n", "%new"); // Not needed as Java Strings will parse on their own ~ Billy ^_^
                         page = page.replaceAll("§", "&");
                         pages.add(page);
                     }
-
                     //plugin.getConfig().set(bookString + ".content", pages);
                     // Testing method
                     BooksConfig.CONTENT.set(bookString, pages);
@@ -142,18 +148,7 @@ public class Books implements CommandExecutor {
                     // Testing method
                     BooksConfig.BOOK_WRITTEN_BY.set(bookString, Arrays.asList(bookMeta.getPages().get(bookMeta.getPageCount())));
                 }
-
-                /*
-                try {
-                    plugin.saveConfig();
-                    plugin.reloadConfig();
-                    // testing method
-                    player.sendMessage(DwD + ChatColor.GOLD + "New book " + ChatColor.AQUA + bookString + ChatColor.GOLD + " has been registered!");
-                } catch (Exception ex) {
-                    ex.printStackTrace();
-                    player.sendMessage(DwD + ChatColor.GOLD + "Failed to save " + ChatColor.AQUA + bookString + ChatColor.GOLD + " please check console error!");
-                }
-                */
+                player.sendMessage(DwD + ChatColor.GOLD + "New book " + ChatColor.AQUA + bookString + ChatColor.GOLD + " has been registered!");
             } else {
                 player.sendMessage(DwD + ChatColor.GOLD + "Please retry with a book in your hand!");
             }
@@ -163,7 +158,6 @@ public class Books implements CommandExecutor {
     private void giveBook(ItemStack bookString, Player player, int slot) {
         if (slot > 0) {
             ItemStack item = player.getInventory().getItem(slot);
-
             if (item == null) {
                 player.getInventory().setItem(slot, bookString);
             } else {
@@ -172,7 +166,6 @@ public class Books implements CommandExecutor {
         } else {
             player.getInventory().addItem(bookString);
         }
-
         player.updateInventory();
     }
 
