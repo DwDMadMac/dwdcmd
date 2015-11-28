@@ -1,6 +1,7 @@
 package net.downwithdestruction.dwdcmd.commands;
 
 import net.downwithdestruction.dwdcmd.DwDCmd;
+import net.downwithdestruction.dwdcmd.configuration.BooksConfig;
 import net.md_5.bungee.api.ChatColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
@@ -102,18 +103,26 @@ public class Books implements CommandExecutor {
 
                 if (bookMeta.hasAuthor()) {
                     //BooksConfig.valueOf(BooksConfig.BOOK_WRITTEN_BY.getString(bookMeta.getAuthor()));
-                    plugin.getConfig().set(bookString + ".Book written by", bookMeta.getAuthor());
+                    //plugin.getConfig().set(bookString + ".Book written by", bookMeta.getAuthor());
+                    // Testing method
+                    BooksConfig.BOOK_WRITTEN_BY.set(bookString, bookMeta.getAuthor());
                 } else {
                     //BooksConfig.valueOf(BooksConfig.BOOK_WRITTEN_BY.getString("Unknown"));
-                    plugin.getConfig().set(bookString + ".Book written by", "Unknown");
+                    //plugin.getConfig().set(bookString + ".Book written by", "Unknown");
+                    // Testing method
+                    BooksConfig.BOOK_WRITTEN_BY.set(bookString, "Unknown");
                 }
 
                 if (bookMeta.hasTitle()) {
                     //BooksConfig.valueOf(BooksConfig.TITLE.getString(bookMeta.getTitle()));
-                    plugin.getConfig().set(bookString + ".Title", bookMeta.getTitle());
+                    //plugin.getConfig().set(bookString + ".Title", bookMeta.getTitle());
+                    // Testing method
+                    BooksConfig.TITLE.set(bookString, bookMeta.getTitle());
                 } else {
                     //BooksConfig.valueOf(BooksConfig.TITLE.getString("None"));
-                    plugin.getConfig().set(bookString + ".Title", "None");
+                    //plugin.getConfig().set(bookString + ".Title", "None");
+                    // Testing method
+                    BooksConfig.TITLE.set(bookString, "None");
                 }
 
                 if (bookMeta.hasPages()) {
@@ -125,19 +134,26 @@ public class Books implements CommandExecutor {
                         pages.add(page);
                     }
 
-                    plugin.getConfig().set(bookString + ".content", pages);
+                    //plugin.getConfig().set(bookString + ".content", pages);
+                    // Testing method
+                    BooksConfig.CONTENT.set(bookString, pages);
                 } else {
-                    plugin.getConfig().set(bookString + ".content", Arrays.asList(bookMeta.getPages().get(bookMeta.getPageCount())));
+                    //plugin.getConfig().set(bookString + ".content", Arrays.asList(bookMeta.getPages().get(bookMeta.getPageCount())));
+                    // Testing method
+                    BooksConfig.BOOK_WRITTEN_BY.set(bookString, Arrays.asList(bookMeta.getPages().get(bookMeta.getPageCount())));
                 }
 
+                /*
                 try {
                     plugin.saveConfig();
                     plugin.reloadConfig();
+                    // testing method
                     player.sendMessage(DwD + ChatColor.GOLD + "New book " + ChatColor.AQUA + bookString + ChatColor.GOLD + " has been registered!");
                 } catch (Exception ex) {
                     ex.printStackTrace();
                     player.sendMessage(DwD + ChatColor.GOLD + "Failed to save " + ChatColor.AQUA + bookString + ChatColor.GOLD + " please check console error!");
                 }
+                */
             } else {
                 player.sendMessage(DwD + ChatColor.GOLD + "Please retry with a book in your hand!");
             }

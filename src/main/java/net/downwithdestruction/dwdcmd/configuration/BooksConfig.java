@@ -6,8 +6,7 @@ import org.bukkit.configuration.ConfigurationSection;
 import org.bukkit.configuration.file.YamlConfiguration;
 
 import java.io.File;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 /**
  * Created by madmac on 11/25/15.
@@ -35,7 +34,7 @@ public enum BooksConfig {
 
                 if (!dir.mkdir()) {
                     // TODO: Create Logger
-                    System.out.println(ChatColor.RED + "Unable to create book data directory: " + ChatColor.GOLD + dir.getAbsolutePath());
+                    System.out.println(ChatColor.RED + "Unable to create books data directory: " + ChatColor.GOLD + dir.getAbsolutePath());
                     return;
                 }
             }
@@ -98,6 +97,25 @@ public enum BooksConfig {
         return getConfig(bookName).getDouble(getKey(), (Double) def);
     }
 
+    public Map<UUID, String> getPlayers(String bookName) {
+        Map<UUID, String> map = new HashMap<>();
+        for (Map<?, ?> player : getMapList(bookName)) {
+            map.put(UUID.fromString((String) player.get("uuid")), (String) player.get("name"));
+        }
+        return map;
+    }
+
+    public void setPlayers(String bookName, Map<UUID, String> players) {
+        List<HashMap<String, String>> maps = new ArrayList<>();
+        for (Map.Entry<UUID, String> entry : players.entrySet()) {
+            HashMap<String, String> player = new HashMap<>();
+            player.put("uuid", entry.getKey().toString());
+            player.put("name", entry.getValue());
+            maps.add(player);
+        }
+        set(bookName, maps);
+    }
+
     private YamlConfiguration getConfig(String bookName) {
         YamlConfiguration yamlConfiguration = new YamlConfiguration();
 
@@ -105,7 +123,7 @@ public enum BooksConfig {
             yamlConfiguration.load(new File(plugin.getDataFolder(), "books" + File.separator + bookName + ".yml"));
         } catch (Exception e) {
             // TODO: Create Logger
-            System.out.println(ChatColor.RED + "Error loading city config file!");
+            System.out.println(ChatColor.RED + "Error loading books config file!");
             e.printStackTrace();
         }
 
