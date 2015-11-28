@@ -45,7 +45,7 @@ public class Books implements CommandExecutor {
             if ((strings.length == 0)) {
                 player.sendMessage(DwD + ChatColor.GOLD + "Invalid Command!");
                 player.sendMessage(DwD + ChatColor.GOLD + "/book create <BookName> " + ChatColor.AQUA + "To create/save an book.");
-                player.sendMessage(DwD + ChatColor.GOLD + "/book <BookName> " + ChatColor.AQUA + "To get a book");
+                player.sendMessage(DwD + ChatColor.GOLD + "/book give <BookName> " + ChatColor.AQUA + "To get a book");
                 return true;
             }
 

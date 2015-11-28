@@ -14,6 +14,9 @@ commands:
     helmet:
         usage: /<command> [player]
         description: Set a custom helmet that is in your hand.
+    book:
+        usage: /<command> [create | give] [BookName]
+        description: Allows you to create/get a custom book.
 permissions:
     dwdcmd.command.fly:
         description: Allows you to toggle creative flymode.
@@ -41,4 +44,13 @@ permissions:
         default: op
     dwdcmd.command.helmet.exempt:
         description: stop other players from changing your custom helmet.
+        default: op
+    dwdcmd.command.books:
+        description: Allows you to use the book command
+        default: op
+    dwdcmd.command.books.create:
+        description: Allows you to create a custom book in your hand.
+        default: op
+    dwdcmd.command.books.give:
+        description: Allows you to get a custom created book by name.
         default: op

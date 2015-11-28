@@ -1,5 +1,6 @@
 package net.downwithdestruction.dwdcmd;
 
+import net.downwithdestruction.dwdcmd.commands.Books;
 import net.downwithdestruction.dwdcmd.commands.Fly;
 import net.downwithdestruction.dwdcmd.commands.Hat;
 import net.downwithdestruction.dwdcmd.listeners.PlayerListener;
@@ -59,6 +60,7 @@ public class DwDCmd extends JavaPlugin {
         this.getCommand("fly").setExecutor(new Fly(this));
         this.getCommand("flyspeed").setExecutor(new Fly(this));
         this.getCommand("helmet").setExecutor(new Hat(this));
+        this.getCommand("book").setExecutor(new Books(this));
     }
 
     private void copy(InputStream in, File file) {
