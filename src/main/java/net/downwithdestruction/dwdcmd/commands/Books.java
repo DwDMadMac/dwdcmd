@@ -148,7 +148,7 @@ public class Books implements CommandExecutor {
                     // Testing method
                     BooksConfig.BOOK_WRITTEN_BY.set(bookString, Arrays.asList(bookMeta.getPages().get(bookMeta.getPageCount())));
                 }
-                player.sendMessage(DwD + ChatColor.GOLD + "New book " + ChatColor.AQUA + bookString + ChatColor.GOLD + " has been registered!");
+                player.sendMessage(DwD + ChatColor.GOLD + "You have jut registered a new book! Book Name: " + ChatColor.AQUA + bookString);
             } else {
                 player.sendMessage(DwD + ChatColor.GOLD + "Please retry with a book in your hand!");
             }
