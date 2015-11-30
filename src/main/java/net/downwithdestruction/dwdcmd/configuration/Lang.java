@@ -11,11 +11,14 @@ import java.io.File;
  * Created by madmac on 11/28/15.
  */
 public enum Lang {
-    UNKNOWN_ERROR("An unknown error has happened!"),
+    UNKNOWN_ERROR("&6An unknown error has happened!"),
+    INVALID_COMMAND("&6Invalid command!"),
+    NO_PERMISSIONS("&6You do not have permission to use this command!"),
 
     // INFO: Books Class
     NO_PERMISIONS_GIVE("&6You do not have permission to use /book give <BookName>"),
-    NO_PERMISSIONS_DELETE("&6You do not have permission to use /book delete <BookName>");
+    NO_PERMISSIONS_DELETE("&6You do not have permission to use /book delete <BookName>"),
+    NO_PERMISIONS_CREATE("&6You do not have permission to use /book create <BookName>");
 
     private DwDCmd plugin;
     private String def;

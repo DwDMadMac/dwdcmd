@@ -38,22 +38,22 @@ public class Books implements CommandExecutor {
         if (command.getName().equalsIgnoreCase("book")) {
             Player player = (Player) commandSender;
             if (!(player.hasPermission("dwdmcd.command.books"))) {
-                player.sendMessage(DwD + ChatColor.GOLD + "You do not have permission to use /book.");
+                player.sendMessage(DwD + Lang.NO_PERMISSIONS.toString());
                 return true;
             }
             if ((strings.length == 0)) {
-                player.sendMessage(DwD + ChatColor.GOLD + "Invalid Command!");
+                player.sendMessage(DwD + Lang.INVALID_COMMAND.toString());
                 player.sendMessage(DwD + ChatColor.GOLD + "/book create <BookName> " + ChatColor.AQUA + "To create/save an book.");
                 player.sendMessage(DwD + ChatColor.GOLD + "/book give <BookName> " + ChatColor.AQUA + "To get a book");
                 return true;
             }
             if (strings[0].equalsIgnoreCase("create")) {
                 if (!(player.hasPermission("dwdcmd.command.books.create"))) {
-                    player.sendMessage(DwD + ChatColor.GOLD + "You do not have permission to use /book create <BookName>");
+                    player.sendMessage(DwD + Lang.NO_PERMISIONS_CREATE.toString());
                     return true;
                 }
                 if (strings.length == 1) {
-                    player.sendMessage(DwD + ChatColor.GOLD + "Invalid Command.");
+                    player.sendMessage(DwD + Lang.INVALID_COMMAND.toString());
                     player.sendMessage(DwD + ChatColor.GOLD + "/book create <BookName> " + ChatColor.AQUA + "To create/save an book.");
                     return true;
                 }
